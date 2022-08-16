@@ -1,23 +1,6 @@
-> **Instructions**
-> 
-> 1. Read Chapters 2 & 3 of [Pro Git][ProGit]. The chapters are short.
-> 2. Answer these questions using [Markdown format][markdown-cheatsheet] (also [Github Markdown][github-markdown]). 
-> 3. Place your answers between lines beginning with 3 backquotes, which tells Markdown it should be unformatted text, and write only the commands you would type (**no** shell prompt).
->    Indent the 3 backquotes so they line up with the question text (3 leading spaces) so Markdown formats you answer as part of the numbered item.
->    Example:
->    ```
->    git init
->    ```  
-> 4. **Test that your answers are correct!** There is **no excuse** for incorrect answers since you can test your answers by experimentation.      
-> 5. **Delete these instructions and all "TODO" lines.** Points deducted for each "TODO" in submitted work.   
-> 6. Verify that your Markdown formatting is correct -- points deducted for bad formatting. VS Code and IntelliJ have markdown previewers. You should also preview it on Github, since Github Markdown is a bit non-standard.
->   *Excellent VS Code Markdown Previewer*: the [Markdown Preview Enhanced][vscode-markdown-preview-enhanced] extension.
-
 ## Using Git
 
-> TODO: Create a table of contents here.  Each line should be a clickable link to each part of this document or another file containing the questions and answers. One item per line.
-
-[Basics](#basics)    
+>[Basics](#basics)    
 [Adding and Changing Things](#adding-and-changing-things)    
 [Next Section (todo: Fix This)](#next-section)    
 [Next Section (todo: Fix This)](#next-next-section)    
@@ -33,25 +16,25 @@ In this file, directory paths are written with a forward slash as on MacOS, Linu
 ## Basics
 
 1. When using Git locally, what are these?  Define each one in a sentence
-   * Staging area -
-   * Working copy -
+   * Staging area - An in between area that store a to-be commit files
+   * Working copy - File that has been check out and modifies, but not yet commited
    * master -
    * HEAD -
 
 2. When you install git on a new machine (or in a new user account) you should perform these 2 git commands to tell git your name and email.  These values are used in commits that you make:
    ```
    # Git configuration commands for a new account
-
+      git config --global user.name "your name"
+      git config --global user.email your.email
 
    ```
 
 3. There are 2 ways to create a local Git repository.  What are they?
-   - todo: briefly describe first way
-   - todo: briefly describe second way
+   - Create local repo : git init
+   - Clone the existing repo : git clone url localDirectory name
 
 4. When you create a git repository by entering `git init`, Git will create a "hidden" directory for the local repository.  Where is the directory for this local repository (relative to the directory where you typed "git init")?
-
-
+    - /dir1/dir2/somefile/.git
 
 ## Adding and Changing Things
 
@@ -67,47 +50,58 @@ test/
     test_a.py
     ...
 ```     
-> TODO: Write the git command to perform each of these:
 
 1. Add README.md and *everything* in the `src` directory to the git staging area.
    ```
-   todo  your answer here
+   git add README.md
+   git add src/a.py src/b.py src/c.py
    ```
 
 2. Add `test/test_a.py` to the staging area (but not any other files).
    ```
-   todo  your answer here
+   git add test/test.py
    ```
 
 3. List the files in the staging area.
-
-
+   * README.md
+   * src/a.py 
+   * src/b.py
+   * src/c.py
+   * test/test_a.py
+   
 4. Remove `README.md` from the staging area. (Useful if you accidentally add something you don't want to commit.)
-
+   ```
+   git rm README.md
+   ```
 
 5. Commit everything in the staging area to the repository.
-
-
+   ```
+   git commit -m "commit all file in stageing area"
+   ```
 6. Describe 2 steps to configure the repository so git will ignore all files in the `out/` directory:
-   - step one
-   - step two
+   - step one : Create .gitignore
+   - step two : Edit out/ in .gitignore
 
 7. Command to move all the .py files from `src` to the top-level directory of this repository, so they are also moved in the Git repo.
-
+   ```
+   git mv src/*
+   ```   
 
 8. Commit this change with the message "moved src directory":
-
+   ```
+   git commit -m "moved src directory"
+   ```
 
 9. Command to add **all changed files** (but not untracked files) to the staging area using a single command.
-
+   ```
+   git commit -a
+   ```
 
 10. **Delete** the file `c.py` from your working copy **and** the repository:
 
 
 
 ## Undo Changes and Recover Files
-
-> TODO: enter the git command to do each of these
 
 1.  Display the differences between your *working copy* of `a.py` and the `a.py` in the *local repository* (HEAD revision):
 
@@ -147,11 +141,13 @@ test/
    Some versions of git have an *alias* "log1" for this (`git log1`).
 
 2. Show the history (as above) including *all* branches in the repository and include a graph connecting the commits:
-
+   ```
+   git log
+   ```
 
 3. List all the files in the current branch of the repository:
    ```
-   todo your answer
+   git ls -files
    ```
    example output:
    ```
@@ -166,11 +162,14 @@ test/
 
 ## Branch and Merge
 
-> TODO write the commands to do each of these
 1. Create a new branch named `dev-foo`:
- 
+   ```
+   git branch dev-foo
+   ```
 2. Display the name of your current branch:
-
+   ```
+   git status
+   ```
 3. List the names of **all** branches, including remote branches:
 
 4. Switch your working copy to the branch named `dev-foo`:
