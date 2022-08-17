@@ -1,4 +1,6 @@
-## Using Git
+## The ultimate guide to Using Git
+
+*** For The Impatient. ***
 
 >[Basics](#basics)    
 [Adding and Changing Things](#adding-and-changing-things)    
