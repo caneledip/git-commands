@@ -1,7 +1,5 @@
-## The ultimate guide to Using Git
-
-*** For The Impatient. ***
-
+## Git reference
+by Me
 >[Basics](#basics)    
 [Adding and Changing Things](#adding-and-changing-things)    
 [Next Section (todo: Fix This)](#next-section)    
@@ -20,8 +18,8 @@ In this file, directory paths are written with a forward slash as on MacOS, Linu
 1. When using Git locally, what are these?  Define each one in a sentence
    * Staging area - An in between area that store a to-be commit files
    * Working copy - File that has been check out and modifies, but not yet commited
-   * master -
-   * HEAD -
+   * master - A main branch that is always deployable
+   * HEAD - The pointer to the branch current reference
 
 2. When you install git on a new machine (or in a new user account) you should perform these 2 git commands to tell git your name and email.  These values are used in commits that you make:
    ```
@@ -100,34 +98,48 @@ test/
    ```
 
 10. **Delete** the file `c.py` from your working copy **and** the repository:
-
+   ```
+   git rm filename
+   git commit -m "Removing filename from repository"
+   git push
+   ```
 
 
 ## Undo Changes and Recover Files
 
 1.  Display the differences between your *working copy* of `a.py` and the `a.py` in the *local repository* (HEAD revision):
-
+   ```
+   git status
+   ```   
 2. Display the differences between your *working copy* of `a.py` and the version in the *staging area*. (But, if a.py is not in the staging area this will compare working copy to HEAD revision):
-
+   ```
+   git diff
+   ```
 3. **View changes to be committed:** Display the differences between files in the staging area and the versions in the repository. (You can also specify a file name to compare just one file.) 
-
+   ```
+   git diff --staged
+   ```
 
 4. **Undo "git add":** If `main.py` has been added to the staging area (`git add main.py`), remove it from the staging area:
-
+   ```
+   git restore --staged main.py
+   ```
 
 5. **Recover a file:** Command to replace your working copy of `a.py` with the most recent (HEAD) version in the repository.  This also works if you have deleted your working copy of this file.
-
+   ```
+   git restore a.py
+   ```
 
 6. **Undo a commit:** Suppose you want to discard some commit(s) and move both HEAD and "master" to an earlier revision (an earlier commit)  Suppose the git commit graph looks like this (`aaaa`, etc, are the commit ids)
    ```
    aaaa ---> bbbb ---> cccc ---> dddd [HEAD -> master]
    ``` 
-   The command to reset HEAD and master to the commit id `bbbb`:
+   The command to reset HEAD and master to the commit id `bbbb`: git reset --hard head~2
 
 
 7. **Checkout old code:** Using the above example, the command to replace your working copy with the files from commit with id `aaaa`:
    ```
-   todo your answer here
+   git reset bbbb
    ```
     Note:
     - Git won't let you do this if you have uncommitted changes to any "tracked" files.
@@ -170,39 +182,46 @@ test/
    ```
 2. Display the name of your current branch:
    ```
-   git status
+   git branch
    ```
 3. List the names of **all** branches, including remote branches:
-
+   ```
+   git branch -a
+   ```
 4. Switch your working copy to the branch named `dev-foo`:
-
+   ```
+   git checkout dev-foo
+   ```
 5. **Merge:** To merge the work from `dev-foo` into the master branch, perform these steps:
-   > TODO: write a description of the steps and the git command(s) for each step
-   1. step one
+   1. step one : checkout to master branch
       ```
-      git do something
+      git checkout master
       ```
-   2. step two
+   2. step two : merge dev-foo branch into master
       ```
-      git do something else
+      git merge dev-foo
       ```
 
 
 6. Describe under what conditions a merge may fail.
-
+   ```
+   git can fail to merge when merging can overwritten your file or your merging is in conflicted with other user merge
+   ```
 
 
 
 ## Favorites
-
-> TODO: Add *at least* 1 git task that (a) that you'd like to remember, or (b) you think is really useful, and the git command(s) to do it.
-
-
+   ```
+   git add -u filename
+   git commit -m "comment"
+   git push
+   ```
 
 ---
 ## Resources
 
-> TODO: Add your favorite Git resources (at least 1)
+
+[Git SCM](https://git-scm.com/) Free and open source for learning git.
 
 [Pro Git Online Book][ProGit] Chapters 2 & 3 contain the essentials. Downloadable PDF is also available.     
 [Visual Git Reference](https://marklodato.github.io/visual-git-guide) one page with illustrations of git commands.
