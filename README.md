@@ -54,23 +54,19 @@ test/
 
    ```
    git add README.md
-   git add src/a.py src/b.py src/c.py
+   git add src
    ```
 
 2. Add `test/test_a.py` to the staging area (but not any other files).
 
    ```
-   git add test/test.py
+   git add test/test_a.py
    ```
 
 3. List the names of files in the staging area.
 
    ```
-   - README.md
-   - src/a.py
-   - src/b.py
-   - src/c.py
-   - test/test_a.py
+   git status
    ```
 
 4. Remove `README.md` from the staging area. This is **very useful** if you accidentally add something you don't want to commit.
@@ -268,19 +264,19 @@ test/
 1. Display the differences between your _working copy_ of `a.py` and the `a.py` in the _local repository_ (HEAD revision):
 
    ```
-   git status
+   git diff
    ```
 
 2. Display the differences between your _working copy_ of `a.py` and the version in the _staging area_. (But, if a.py is not in the staging area this will compare working copy to HEAD revision):
 
    ```
-   git diff
+   git diff --staged
    ```
 
 3. **View changes to be committed:** Display the differences between files in the staging area and the versions in the repository. (You can also specify a file name to compare just one file.)
 
    ```
-   git diff --staged
+   git diff --cached
    ```
 
 4. **Undo "git add":** If `main.py` has been added to the staging area (`git add main.py`), remove it from the staging area:
@@ -305,7 +301,7 @@ test/
 
 7. **Checkout old code:** Using the above example, the command to replace your working copy with the files from commit with id `aaaa`:
    ```
-   git reset bbbb
+   git reset aaaa
    ```
    Note:
    - Git won't let you do this if you have uncommitted changes to any "tracked" files.
