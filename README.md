@@ -1,4 +1,4 @@
-## Common Git Commands
+## Ultimate Git Command Guide
 
 Check status of the repo:
     ```
